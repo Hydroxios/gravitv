@@ -67,7 +67,7 @@ The application implements a fully integrated chat component that:
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/gravitv.git
+   git clone https://github.com/hydroxios/gravitv.git
    cd gravitv
    ```
 
