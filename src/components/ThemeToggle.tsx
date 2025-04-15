@@ -1,4 +1,3 @@
-import React from 'react';
 import { ActionIcon } from '@mantine/core';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';

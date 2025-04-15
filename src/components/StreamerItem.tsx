@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, IconButton, Avatar, Box, Tooltip, Menu, MenuItem } from '@mui/material';
+import { Typography, Avatar, Box, Tooltip, Menu, MenuItem } from '@mui/material';
 import AdjustRoundedIcon from '@mui/icons-material/AdjustRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
