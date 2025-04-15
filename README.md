@@ -13,6 +13,30 @@ A Twitch streaming viewer application with a custom chat that combines Twitch me
 - Light/dark mode support
 - Responsive design for different screen sizes
 
+## Requirements
+
+- Node.js 16.x or higher
+- NPM 8.x or higher
+- Modern browser with ES6 support
+- Internet connection for fetching stream data
+- Access to Twitch's services (not blocked by network)
+
+### Technical Dependencies
+
+- React 18.2.0
+- TypeScript 5.8.3
+- React Router DOM 7.5.0
+- Material UI 5.10.15
+- Mantine Core 7.12.2
+- React Twitch Embed 3.0.1
+- TMI.js 1.8.5 for Twitch chat integration
+- React Player 2.11.0
+
+### Server Requirements
+- Backend API server for fetching Twitch stream data
+- CORS enabled for the frontend domain
+- Bandwidth suitable for streaming video content
+
 ## Custom Chat Implementation
 
 The application implements a fully integrated chat component that:
@@ -42,8 +66,31 @@ The application implements a fully integrated chat component that:
 ## Getting Started
 
 1. Clone the repository
-2. Install dependencies with `npm install`
-3. Start the development server with `npm run dev`
+   ```bash
+   git clone https://github.com/yourusername/gravitv.git
+   cd gravitv
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+
+3. Start the development server
+   ```bash
+   npm start
+   ```
+   The application will be available at `http://localhost:3000`
+
+4. For production build
+   ```bash
+   npm run build
+   ```
+   This will create optimized files in the `build` folder
+
+### Environment Setup
+
+This application does not require any API keys or environment variables as it uses publicly available Twitch data through a proxy server. However, if you want to modify the API endpoint, you can edit the URL in `src/hooks/useStreamers.ts`.
 
 ## Usage
 
@@ -53,3 +100,28 @@ The application implements a fully integrated chat component that:
 - Click on your username to change it
 - Add new streamers with the + button in the sidebar
 - Remove streamers by hovering over their name and clicking the delete icon
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Duplicated Streamer List**
+   - If you notice streamers appearing twice in the sidebar, it's likely due to duplicate API calls to fetch streamers. This has been fixed in the latest version by optimizing API calls in the `useStreamers` hook.
+
+2. **Stream Not Loading**
+   - Check your internet connection
+   - Verify that the streamer is currently live
+   - Try refreshing the page
+   - Ensure that Twitch services are not blocked on your network
+
+3. **Chat Not Connecting**
+   - The chat connects to Twitch's IRC servers. If your network blocks IRC connections, chat functionality may not work.
+   - Try using a different network or checking your firewall settings.
+
+4. **Missing Avatars**
+   - Avatar images are fetched from Twitch's API. If they don't load, it might be due to API rate limiting.
+   - The application will retry loading avatars on the next refresh cycle.
+
+### Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

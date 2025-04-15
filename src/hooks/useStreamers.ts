@@ -196,34 +196,8 @@ export const useStreamers = () => {
 
       // Fetch avatar for the new channel
       fetchSingleAvatar(newChannel);
-      
-      // Try to quickly check if the added channel is online
-      // and if so, make it the active channel
-      async function checkAndSetNewChannel() {
-        try {
-          const url = `http://62.4.23.107/api/twitch/stream.php?names=${newChannel}`;
-          const response = await fetch(url);
-          
-          if (response.ok) {
-            const result = await response.json();
-            if (result && result.data && result.data.length > 0) {
-              // The new channel is online, set it as active
-              setChannel(newChannel);
-              setTitle(result.data[0].title);
-              document.title = `GraviTV - ${newChannel}`;
-            }
-          }
-        } catch (error) {
-          console.error("Error checking new channel status:", error);
-        }
-        
-        // Refresh stream data after checking
-        fetchStreams();
-      }
-      
-      checkAndSetNewChannel();
     }
-  }, [newChannel, streamerList, fetchSingleAvatar, fetchStreams]);
+  }, [newChannel, streamerList, fetchSingleAvatar]);
 
   const handleRemoveChannel = useCallback((channelToRemove: string) => {
     if (streamerList.length > 1) {
@@ -245,17 +219,15 @@ export const useStreamers = () => {
         // Clear the title initially to avoid showing old title
         setTitle("");
         
-        // Let the fetchStreams function update the title if the new channel is live
-        fetchStreams();
-      } else {
-        // Just refresh stream data after removing a channel
-        fetchStreams();
+        // No need to call fetchStreams here - it will be triggered by streamerList change
       }
+      // No need to call fetchStreams here either - it will be triggered by streamerList change
     }
-  }, [streamerList, channel, fetchStreams]);
+  }, [streamerList, channel]);
 
   // Set up polling for stream data
   useEffect(() => {
+    // Initial fetch when component mounts or dependencies change
     fetchStreams();
 
     const interval = setInterval(() => {
@@ -266,7 +238,7 @@ export const useStreamers = () => {
     }, 30000);
     
     return () => clearInterval(interval);
-  }, [lastUpdate, fetchStreams]);
+  }, [fetchStreams]); // Only depend on fetchStreams, not lastUpdate
 
   return {
     streamerList,
