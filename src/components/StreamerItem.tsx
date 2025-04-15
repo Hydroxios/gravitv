@@ -122,23 +122,6 @@ export const StreamerItem: React.FC<StreamerItemProps> = ({
               </span>
             </Tooltip>
           </Typography>
-          <Box 
-            sx={{ display: 'inline-flex' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <IconButton 
-              className="delete-channel" 
-              size="small" 
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                onRemove(name);
-              }}
-              onMouseDown={(e) => e.stopPropagation()}
-            >
-              <DeleteIcon fontSize="small" />
-            </IconButton>
-          </Box>
         </>
       )}
       <Menu
